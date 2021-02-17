@@ -22,7 +22,6 @@ class Crawlerps5Pipeline:
             f.write(str(next_iter))
 
     def process_item(self, item, spider):
-        print(item)
         if item['price']:
             telegram_send.send(messages=[f"Produto {item['name']} encontrado por {item['price']}"])
         else:
