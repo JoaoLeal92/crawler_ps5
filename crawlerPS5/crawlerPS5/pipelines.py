@@ -13,11 +13,11 @@ import os
 class Crawlerps5Pipeline:
 
     def open_spider(self, spider):
-        with open(os.path.abspath('../iter_number'), 'r') as f:
+        with open(os.path.abspath('../iter_number.txt'), 'r') as f:
             self.iter_number = int(f.read())
 
     def close_spider(self, spider):
-        with open(os.path.abspath('../iter_number'), 'w') as f:
+        with open(os.path.abspath('../iter_number.txt'), 'w') as f:
             next_iter = self.iter_number + 1
             f.write(str(next_iter))
 
