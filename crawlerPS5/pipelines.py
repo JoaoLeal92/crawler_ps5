@@ -26,7 +26,7 @@ class Crawlerps5Pipeline:
             telegram_send.send(messages=[f"Produto {item['name']} encontrado por {item['price']}"])
         else:
             # Checks if bot has run for 24h
-            iter_div_result = self.iter_number % 86400
+            iter_div_result = self.iter_number % 1440
             if iter_div_result == 0:
                 telegram_send.send(messages=["Bot ativo por 24h, produto ainda não encontrado"])
 
