@@ -12,6 +12,7 @@ class AmazonSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
+        print('Resposta da chamada: ', response)
         product_title = response.xpath('//span[@id="productTitle"]/text()').get()
         if product_title:
             product_title = product_title.strip()
