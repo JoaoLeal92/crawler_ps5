@@ -7,27 +7,21 @@
 # useful for handling different item types with a single interface
 # from itemadapter import ItemAdapter
 import telegram_send
-import os
+from datetime import datetime
 
 
 class Crawlerps5Pipeline:
-
-    def open_spider(self, spider):
-        with open(os.path.abspath('../iter_number.txt'), 'r') as f:
-            self.iter_number = int(f.read())
-
-    def close_spider(self, spider):
-        with open(os.path.abspath('../iter_number.txt'), 'w') as f:
-            next_iter = self.iter_number + 1
-            f.write(str(next_iter))
 
     def process_item(self, item, spider):
         if item['price']:
             telegram_send.send(messages=[f"Produto {item['name']} encontrado por {item['price']}"])
         else:
-            # Checks if bot has run for 24h
-            iter_div_result = self.iter_number % 1440
-            if iter_div_result == 0:
+            current_date = datetime.now()
+            current_hour = current_date.hour
+            current_minute = current_date.minute
+
+            # Checks if bot has run for 24h (every 7 am)
+            if current_hour == 7 and current_minute <= 2:
                 telegram_send.send(messages=["Bot ativo por 24h, produto ainda não encontrado"])
 
         if not item['name']:

@@ -1,4 +1,5 @@
 .env
 sources.txt
+cron_old.log
 cron.log
 .idea/
