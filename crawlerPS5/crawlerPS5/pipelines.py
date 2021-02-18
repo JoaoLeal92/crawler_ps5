@@ -21,7 +21,7 @@ class Crawlerps5Pipeline:
             current_minute = current_date.minute
 
             # Checks if bot has run for 24h (every 7 am)
-            if current_hour == 7 and current_minute <= 2:
+            if current_hour == 7 and current_minute <= 1:
                 telegram_send.send(messages=["Bot ativo por 24h, produto ainda não encontrado"])
 
         if not item['name']:
