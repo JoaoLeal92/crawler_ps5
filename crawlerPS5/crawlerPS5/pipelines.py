@@ -14,7 +14,7 @@ class Crawlerps5Pipeline:
 
     def process_item(self, item, spider):
         if item['price']:
-            telegram_send.send(messages=[f"Produto {item['name']} encontrado por {item['price']}"])
+            telegram_send.send(messages=[f"Produto {item['name']} encontrado por {item['price']} na url abaixo: \n\n {item['url']}"])
         else:
             current_date = datetime.now()
             current_hour = current_date.hour

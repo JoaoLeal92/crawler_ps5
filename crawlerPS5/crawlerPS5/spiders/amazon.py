@@ -19,5 +19,5 @@ class AmazonSpider(scrapy.Spider):
 
         product_price = response.xpath('//span[@id="priceblock_ourprice"]/text()').get()
 
-        ps5 = Crawlerps5Item(name=product_title, price=product_price)
+        ps5 = Crawlerps5Item(name=product_title, price=product_price, url=response.url)
         yield ps5
